@@ -8,8 +8,7 @@
   "email": "r.gattapur@nfer.co.uk",
   "tags": ["mcq", "gapMatch"],
   "response": {
-    "baseType": "integer",
-    "cardinality": "single"
+    "cardinality": "record"
   },
   "runtime": {
     "hook": "./runtime/pciNferGapMatch.js",
