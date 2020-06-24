@@ -1,0 +1,41 @@
+/*add some style, need to scope (using the typeIdentifier as class prefix) every style declaration to prevent collision */
+@import url("base.css");
+
+.qti-customInteraction .nferGapMatch ul.likert {
+  list-style-type: none;
+  margin: 0 5px;
+  padding: 0;
+  display: inline-block;
+  position: relative;
+  top: 7px;
+}
+
+.qti-customInteraction .nferGapMatch ul.likert li {
+  float: left;
+  text-align: left;
+  list-style-type: none;
+}
+
+.qti-customInteraction .nferGapMatch ul.likert li input {
+  margin: 0 3px;
+  cursor: pointer;
+}
+
+.qti-customInteraction .nferGapMatch .prompt {
+  position: relative;
+}
+
+.qti-customInteraction .nferGapMatch .likert-label {
+  min-width: 90px;
+  color: #444;
+}
+.qti-customInteraction .nferGapMatch .likert-label-min {
+  text-align: right;
+}
+.qti-customInteraction .nferGapMatch .likert-label-max {
+  text-align: left;
+}
+.qti-customInteraction .nferGapMatch .likert-label img {
+  position: relative;
+  width: 16px;
+}

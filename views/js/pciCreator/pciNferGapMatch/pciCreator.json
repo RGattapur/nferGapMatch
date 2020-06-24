@@ -1,0 +1,38 @@
+{
+  "typeIdentifier": "pciNferGapMatch",
+  "label": "NFER specific Gap Match PCI",
+  "short": "Gap Match PCI",
+  "description": "NFER specific implementation of gap match interaction for PCI usage purpose.",
+  "version": "1.0.0",
+  "author": "Rakesh Gattapur",
+  "email": "r.gattapur@nfer.co.uk",
+  "tags": ["mcq", "gapMatch"],
+  "response": {
+    "baseType": "integer",
+    "cardinality": "single"
+  },
+  "runtime": {
+    "hook": "./runtime/pciNferGapMatch.js",
+    "libraries": [
+      "./runtime/js/jquery_2_1_1_amd.js",
+      "./runtime/js/renderer.js"
+    ],
+    "stylesheets": [
+      "./runtime/css/base.css",
+      "./runtime/css/pciNferGapMatch.css"
+    ],
+    "mediaFiles": []
+  },
+  "creator": {
+    "icon": "./creator/img/icon.png",
+    "hook": "./pciCreator.js",
+    "libraries": [
+      "./creator/tpl/markup.tpl",
+      "./creator/tpl/propertiesForm.tpl",
+      "./creator/widget/Widget.js",
+      "./creator/widget/states/Question.js",
+      "./creator/widget/states/Answer.js",
+      "./creator/widget/states/states.js"
+    ]
+  }
+}
