@@ -18,7 +18,7 @@
  *
  *
  */
-use oat\nferGapMatch\scripts\install\RegisterpciSampleA;
+use oat\nferGapMatch\scripts\install\RegisterNferGapMatchPci;
 
 return array(
     'name' => 'nferGapMatch',
