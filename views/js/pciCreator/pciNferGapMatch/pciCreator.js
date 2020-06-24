@@ -54,6 +54,7 @@ define([
         level: 5,
         "label-min": "min",
         "label-max": "max",
+        alignment: "horizontal",
       };
     },
     /**

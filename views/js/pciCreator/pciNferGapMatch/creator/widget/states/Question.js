@@ -78,7 +78,10 @@ define([
       response = interaction.getResponseDeclaration(),
       level = parseInt(interaction.prop("level")) || 5,
       levels = [5, 7, 9],
-      levelData = {};
+      levelData = {},
+      alignment = interaction.prop("alignment") || "horizontal",
+      alignments = ["horizontal", "vertical"],
+      alignmentData = {};
 
     //build select option data for the template
     _.each(levels, function (lvl) {
@@ -88,11 +91,19 @@ define([
       };
     });
 
+    _.each(alignments, function (aln) {
+      alignmentData[aln] = {
+        label: aln,
+        selected: aln === alignment,
+      };
+    });
+
     //render the form using the form template
     $form.html(
       formTpl({
         serial: response.serial,
         levels: levelData,
+        alignments: alignmentData,
       })
     );
 
