@@ -20,7 +20,7 @@
       "./runtime/css/base.css",
       "./runtime/css/pciNferGapMatch.css"
     ],
-    "mediaFiles": []
+    "mediaFiles": ["./runtime/css/img/bg.png"]
   },
   "creator": {
     "icon": "./creator/img/icon.png",

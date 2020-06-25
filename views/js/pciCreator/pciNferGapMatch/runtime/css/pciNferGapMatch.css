@@ -1,7 +1,7 @@
 /*add some style, need to scope (using the typeIdentifier as class prefix) every style declaration to prevent collision */
 @import url("base.css");
 
-.qti-customInteraction .nferGapMatch ul.likert {
+.qti-customInteraction .pciNferGapMatch ul.likert {
   list-style-type: none;
   margin: 0 5px;
   padding: 0;
@@ -10,32 +10,32 @@
   top: 7px;
 }
 
-.qti-customInteraction .nferGapMatch ul.likert li {
+.qti-customInteraction .pciNferGapMatch ul.likert li {
   float: left;
   text-align: left;
   list-style-type: none;
 }
 
-.qti-customInteraction .nferGapMatch ul.likert li input {
+.qti-customInteraction .pciNferGapMatch ul.likert li input {
   margin: 0 3px;
   cursor: pointer;
 }
 
-.qti-customInteraction .nferGapMatch .prompt {
+.qti-customInteraction .pciNferGapMatch .prompt {
   position: relative;
 }
 
-.qti-customInteraction .nferGapMatch .likert-label {
+.qti-customInteraction .pciNferGapMatch .likert-label {
   min-width: 90px;
   color: #444;
 }
-.qti-customInteraction .nferGapMatch .likert-label-min {
+.qti-customInteraction .pciNferGapMatch .likert-label-min {
   text-align: right;
 }
-.qti-customInteraction .nferGapMatch .likert-label-max {
+.qti-customInteraction .pciNferGapMatch .likert-label-max {
   text-align: left;
 }
-.qti-customInteraction .nferGapMatch .likert-label img {
+.qti-customInteraction .pciNferGapMatch .likert-label img {
   position: relative;
   width: 16px;
 }
