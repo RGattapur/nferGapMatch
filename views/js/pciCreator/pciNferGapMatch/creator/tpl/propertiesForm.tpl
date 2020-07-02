@@ -1,43 +1,12 @@
 <div class="panel">
-    <label for="level">{{__ "Level"}}</label>
+    <label>
+        <input name="shuffle" type="checkbox" {{#if shuffle}}checked="checked" {{/if}} />
+        <span class="icon-checkbox"></span>
+        {{__ "Shuffle choices"}}
+    </label>
     <span class="icon-help tooltipstered" data-tooltip="~ .tooltip-content:first" data-tooltip-theme="info"></span>
-    <span class="tooltip-content">{{__ "Scale size"}}</span>
-    <select name="level" class="select2" data-has-search="false">
-        {{#each levels}}
-        <option value="{{@key}}" {{#if selected}}selected="selected" {{/if}}>{{label}}</option>
-        {{/each}}
-    </select>
-</div>
-
-<div class="panel">
-    <label for="alignment">{{__ "Align Choices"}}</label>
-    <span class="icon-help tooltipstered" data-tooltip="~ .tooltip-content:first" data-tooltip-theme="info"></span>
-    <span class="tooltip-content">{{__ "Align the choices horizontally or vertically"}}</span>
-    <select name="alignment" class="select2" data-has-search="false">
-        {{#each alignments}}
-        <option value="{{@key}}" {{#if selected}}selected="selected" {{/if}}>{{label}}</option>
-        {{/each}}
-    </select>
-</div>
-
-<hr />
-<div class="panel">
-    <h3>{{__ 'Orientation'}}</h3>
-    <span class="icon-help tooltipstered" data-tooltip="~ .tooltip-content" data-tooltip-theme="info"></span>
     <span class="tooltip-content">
-        {{__ 'Display the choices either horizontally or vertically'}}
+        {{__ 'If the shuffle attribute is true then the delivery engine will randomize the order in which the choices are initially presented.
+        However each choice may be "shuffled" of "fixed" individually.'}}
     </span>
-    <div>
-        <label class="smaller-prompt">
-            <input type="radio" name="orientation" value="vertical" {{#unless horizontal}}checked{{/unless}} />
-            <span class="icon-radio"></span>
-            {{__ 'Vertical'}}
-        </label>
-        <br>
-        <label class="smaller-prompt">
-            <input type="radio" name="orientation" value="horizontal" {{#if horizontal}}checked{{/if}} />
-            <span class="icon-radio"></span>
-            {{__ 'Horizontal'}}
-        </label>
-    </div>
 </div>

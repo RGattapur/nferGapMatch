@@ -16,24 +16,20 @@
  * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
+
 define([
-    'taoQtiItem/qtiCreator/widgets/states/factory',
-    'taoQtiItem/qtiCreator/widgets/interactions/states/Answer',
-    'taoQtiItem/qtiCreator/widgets/interactions/helpers/answerState',
-    'taoQtiItem/qtiCreator/widgets/helpers/content'
-], function(stateFactory, Answer, answerStateHelper){
-    'use strict';
+  "taoQtiItem/qtiCreator/widgets/states/factory",
+  "taoQtiItem/qtiCreator/widgets/interactions/states/Answer",
+  "taoQtiItem/qtiCreator/widgets/interactions/helpers/answerState",
+], function (stateFactory, Answer, answerStateHelper) {
+  var GapMatchInteractionStateAnswer = stateFactory.extend(
+    Answer,
+    function () {
+      //forward to one of the available sub state, according to the response processing template
+      answerStateHelper.forward(this.widget);
+    },
+    function () {}
+  );
 
-    var InteractionStateAnswer = stateFactory.extend(Answer, function initAnswerState(){
-        this.widget.$original.find('.likert input').prop('disabled', 'disabled');
-    }, function exitAnswerState(){
-        this.widget.$original.find('.likert input').removeProp('disabled');
-    });
-
-    InteractionStateAnswer.prototype.initResponseForm = function initResponseForm(){
-
-        answerStateHelper.initResponseForm(this.widget, {rpTemplates : ['CUSTOM', 'NONE']});
-    };
-
-    return InteractionStateAnswer;
+  return GapMatchInteractionStateAnswer;
 });

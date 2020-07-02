@@ -31,6 +31,8 @@
       "./creator/widget/Widget.js",
       "./creator/widget/states/Question.js",
       "./creator/widget/states/Answer.js",
+      "./creator/widget/states/Correct.js",
+      "./creator/widget/states/Map.js",
       "./creator/widget/states/states.js"
     ]
   }

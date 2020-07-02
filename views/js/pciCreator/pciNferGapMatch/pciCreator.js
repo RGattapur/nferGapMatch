@@ -49,12 +49,9 @@ define([
      *
      * @returns {Object}
      */
-    getDefaultProperties: function (pci) {
+    getDefaultProperties: function () {
       return {
-        level: 5,
-        "label-min": "min",
-        "label-max": "max",
-        alignment: "horizontal",
+        shuffle: false,
       };
     },
     /**
@@ -64,8 +61,14 @@ define([
      * @returns {Object}
      */
     afterCreate: function (pci) {
-      //always set the NONE response processing mode to likert scale
-      pci.getResponseDeclaration().setTemplate("NONE");
+      this.body(
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing ...*****************************</p>"
+      );
+      this.createChoice(); //gapMatchInteraction requires at least one gapMatch to be valid http://www.imsglobal.org/question/qtiv2p1/imsqti_infov2p1.html#element10307
+      this.createResponse({
+        baseType: "directedPair",
+        cardinality: "multiple",
+      });
     },
     /**
      * (required) Gives the qti pci xml template
@@ -83,6 +86,96 @@ define([
     getMarkupData: function (pci, defaultData) {
       defaultData.prompt = pci.data("prompt");
       return defaultData;
+    },
+
+    getNextPlaceholder: function getNextPlaceholder() {
+      var allChoices = this.getChoices(),
+        existingChoicesLabels = _.map(allChoices, function (choice) {
+          var choiceBody = choice.getBody() || {};
+          return choiceBody.bdy;
+        }),
+        placeHolderIndex = 1,
+        placeHolderPrefix = "choice #",
+        placeHolder = placeHolderPrefix + placeHolderIndex;
+
+      while (existingChoicesLabels.indexOf(placeHolder) !== -1) {
+        placeHolderIndex++;
+        placeHolder = placeHolderPrefix + placeHolderIndex;
+      }
+      return placeHolder;
+    },
+
+    createChoice: function (text) {
+      var choice = new Choice();
+
+      this.addChoice(choice);
+
+      choice.body(text || this.getNextPlaceholder()).buildIdentifier("choice");
+
+      if (this.getRenderer()) {
+        choice.setRenderer(this.getRenderer());
+      }
+
+      event.choiceCreated(choice, this);
+
+      return choice;
+    },
+
+    createGap: function (attr, body) {
+      var choice = new Choice("", attr);
+
+      this.addChoice(choice);
+      choice.buildIdentifier("gap");
+      choice.body(body);
+
+      if (this.getRenderer()) {
+        choice.setRenderer(this.getRenderer());
+      }
+
+      event.choiceCreated(choice, this);
+
+      return choice;
+    },
+
+    removeChoice: function (element) {
+      var serial = "",
+        c;
+
+      if (typeof element === "string") {
+        serial = element;
+      } else if (Element.isA(element, "gap")) {
+        serial = element.serial;
+      } else if (Element.isA(element, "gapText")) {
+        serial = element.serial;
+      }
+
+      if ((c = this.getBody().getElement(serial))) {
+        //remove choice
+        this.getBody().removeElement(c);
+
+        //update the response
+        responseHelper.removeChoice(this.getResponseDeclaration(), c);
+
+        //trigger event
+        event.deleted(c, this);
+      } else if ((c = this.getChoice(serial))) {
+        //remove choice
+        delete this.choices[serial];
+
+        //update the response
+        responseHelper.removeChoice(this.getResponseDeclaration(), c);
+
+        //trigger event
+        event.deleted(c, this);
+      }
+    },
+
+    getGaps: function getGaps() {
+      return this.getBody().getElements("gap");
+    },
+
+    getNormalMaximum: function getNormalMaximum() {
+      return maxScore.gapMatchInteractionBased(this);
     },
   };
 

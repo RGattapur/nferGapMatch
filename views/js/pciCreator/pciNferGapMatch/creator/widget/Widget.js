@@ -28,9 +28,6 @@ define([
     this.registerStates(states);
 
     Widget.initCreator.call(this);
-
-    //for existing likert scale PCI, ensure that the rp template is always NONE
-    this.element.getResponseDeclaration().setTemplate("NONE");
   };
 
   return pciNferGapMatchWidget;

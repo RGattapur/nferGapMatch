@@ -18,10 +18,11 @@
  */
 define([
   "taoQtiItem/qtiCreator/widgets/states/factory",
-  "taoQtiItem/qtiCreator/widgets/interactions/customInteraction/states/states",
+  "taoQtiItem/qtiCreator/widgets/interactions/blockInteraction/states/states",
   "pciNferGapMatch/creator/widget/states/Question",
-  "pciNferGapMatch/creator/widget/states/Answer",
+  "pciNferGapMatch/creator/widget/states/Correct",
+  "pciNferGapMatch/creator/widget/states/Map",
 ], function (factory, states) {
   "use strict";
-  return factory.createBundle(states, arguments, ["correct", "map"]);
+  return factory.createBundle(states, arguments);
 });

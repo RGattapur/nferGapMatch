@@ -50,12 +50,6 @@ define([
 
       //tell the rendering engine that I am ready
       qtiCustomInteractionContext.notifyReady(this);
-
-      //listening to dynamic configuration change
-      this.on("levelchange", function (level) {
-        self.config.level = level;
-        renderer.renderChoices(self.id, self.dom, self.config);
-      });
     },
     /**
      * Programmatically set the response following the json schema described in

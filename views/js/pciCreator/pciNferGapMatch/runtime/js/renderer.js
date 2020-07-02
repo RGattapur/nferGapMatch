@@ -1,4 +1,4 @@
-/*
+/**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -13,60 +13,27 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
- *
+ * Copyright (c) 2014 (original work) Open Assessment Technologies SA (under the project TAO-PRODUCT);
  */
+
 define([
-  "pciNferGapMatch/runtime/js/jquery_2_1_1_amd",
-  "OAT/util/html",
-], function ($, html) {
+  "lodash",
+  "taoQtiItem/qtiCommonRenderer/renderers/interactions/GapMatchInteraction",
+  "taoQtiItem/qtiCreator/widgets/interactions/gapMatchInteraction/Widget",
+], function (_, GapMatchInteraction, GapMatchInteractionWidget) {
   "use strict";
 
-  function renderChoices(id, $container, config) {
-    var $li,
-      level = parseInt(config.level) || 5,
-      $ul = $container.find("ul.likert");
+  var CreatorGapMatchInteraction = _.clone(GapMatchInteraction);
 
-    //ensure that renderChoices() is idempotent
-    $ul.empty();
-
-    //add levels
-    for (var i = 1; i <= level; i++) {
-      $li = $("<li>", { class: "likert" });
-      $li.append($("<input>", { type: "radio", name: id, value: i }));
-
-      $ul.append($li);
-    }
-  }
-
-  function renderLabels(id, $container, config, assetManager) {
-    var $ul = $container.find("ul.likert");
-    var $labelMin = $("<span>", {
-      class: "likert-label likert-label-min",
-    }).html(config["label-min"]);
-    var $labelMax = $("<span>", {
-      class: "likert-label likert-label-max",
-    }).html(config["label-max"]);
-
-    $ul.before($labelMin);
-    $ul.after($labelMax);
-  }
-
-  return {
-    render: function (id, container, config, assetManager) {
-      var $container = $(container);
-
-      renderChoices(id, $container, config);
-      renderLabels(id, $container, config, assetManager);
-
-      //render rich text content in prompt
-      //remove it to make it backward compatible ??
-      if ($container.find(".prompt").length) {
-        html.render($container.find(".prompt"));
-      }
-    },
-    renderChoices: function (id, container, config) {
-      renderChoices(id, $(container), config);
-    },
+  CreatorGapMatchInteraction.render = function (interaction, options) {
+    GapMatchInteractionWidget.build(
+      interaction,
+      GapMatchInteraction.getContainer(interaction),
+      this.getOption("interactionOptionForm"),
+      this.getOption("responseOptionForm"),
+      options
+    );
   };
+
+  return CreatorGapMatchInteraction;
 });
